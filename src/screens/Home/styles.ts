@@ -28,19 +28,6 @@ export const styles = StyleSheet.create({
         // marginTop: 10,
         marginRight: 12
     },
-    button :{
-        backgroundColor: '#31cf67',
-        borderRadius: 5,
-        padding: 10,
-        width: 56,
-        height: 56,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 24
-    },
     form: {
         marginTop: 36,
         marginBottom: 42,
