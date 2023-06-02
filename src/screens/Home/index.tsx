@@ -23,10 +23,9 @@ export function Home(){
         />
         <Button />
       </View>
-      <Participant />
-      <Participant />
-      <Participant />
-      <Participant />
+      <Participant name="Thais" />
+      <Participant name="Bruna"/>
+      <Participant name="Nath"/>
     </View>
   )
 }
