@@ -8,6 +8,11 @@ export function Home(){
   function handleParticipantAdd(){
     console.log('yes, yes..')
   }
+
+  function handleParticipantRemove(name: string) {
+    console.log(`Participant ${name} was removed.`)
+  }
+
   return(
     <View style={styles.container}>
       <Text style={styles.eventName}>
@@ -23,9 +28,7 @@ export function Home(){
         />
         <Button />
       </View>
-      <Participant name="Thais" />
-      <Participant name="Bruna"/>
-      <Participant name="Nath"/>
+      <Participant name="Thais" onRemove={() => handleParticipantRemove("Thais")} />
     </View>
   )
 }
