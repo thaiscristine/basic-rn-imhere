@@ -1,9 +1,11 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Button } from '../../components/Button'
 import { Participant } from '../../components/Participant'
 import { styles } from './styles'
 
 export function Home(){
+
+  const participants = ['Thais', 'Lucas', 'Rafael', 'Thiago', 'Jonna', 'Lasrissa', 'Rafasela', 'Thiasgo', 'Jsonna', 'Ladrissa', 'Rafaerla', 'Thirago', 'J3onna', 'Larissa3', 'Rafaela',  'Thiago', 'Jonna4', 'Larissa2', 'Rafaela1', 'Joseph', 'Jose', 'Joonas', 'Jonas'];
 
   function handleParticipantAdd(){
     console.log('yes, yes..')
@@ -15,10 +17,13 @@ export function Home(){
 
   return(
     <View style={styles.container}>
+
       <Text style={styles.eventName}>
         React Native Event
       </Text>
+
       <Text style={styles.eventDate}>Friday, May 26th</Text>
+
       <View style={styles.form}>
         <TextInput 
           style={styles.input} 
@@ -26,9 +31,20 @@ export function Home(){
           placeholderTextColor={'#6b6b6b'}
           keyboardType='email-address'
         />
-        <Button />
+        <Button />        
       </View>
-      <Participant name="Thais" onRemove={() => handleParticipantRemove("Thais")} />
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+      {
+        participants.map((participant, index) => (
+          <Participant 
+            key={index} 
+            name={participant} 
+            onRemove={() => handleParticipantRemove(participant)} 
+          />
+        ))
+      }
+      </ScrollView>
     </View>
   )
 }
