@@ -45,6 +45,10 @@ export function Home(){
             onRemove={() => handleParticipantRemove(item)} 
           /> 
         )} 
+        ListEmptyComponent={() => (
+          <Text style={styles.emptyList}>No participants yet</Text>
+        )}
+
       />
     </View>
   )
