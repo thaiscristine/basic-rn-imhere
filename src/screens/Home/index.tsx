@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import { Button } from '../../components/Button'
 import { Participant } from '../../components/Participant'
 import { styles } from './styles'
@@ -7,12 +7,24 @@ export function Home(){
 
   const participants = ['Thais', 'Lucas', 'Rafael', 'Thiago', 'Jonna', 'Lasrissa', 'Rafasela', 'Thiasgo', 'Jsonna', 'Ladrissa', 'Rafaerla'];
 
-  function handleParticipantAdd(){
-    console.log('yes, yes..')
+  function handleParticipantAdd(name: string){
+    if(participants.includes(name)){
+      return Alert.alert('Participant exists', `Participant already in the list.`)
+    }
+    console.log('1 yes, yes..')
   }
 
   function handleParticipantRemove(name: string) {
-    console.log(`Participant ${name} was removed.`)
+    Alert.alert('Remove participant', `Do you want to remove ${name}?`, [
+      {
+        text: 'No',
+        style: 'cancel'
+      },
+      {
+        text: 'Yes',
+        onPress: () => Alert.alert(`Participant ${name} was removed.`) // removeParticipant(name)
+      }
+    ])
   }
 
   return(
@@ -31,7 +43,9 @@ export function Home(){
           placeholderTextColor={'#6b6b6b'}
           keyboardType='email-address'
         />
-        <Button />        
+        <Button 
+          onPress={() => handleParticipantAdd('Thais')}
+        />        
       </View>
 
       <FlatList
