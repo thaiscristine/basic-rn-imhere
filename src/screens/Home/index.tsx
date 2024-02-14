@@ -12,12 +12,13 @@ export function Home(){
   function handleParticipantAdd(){
     if(participants.includes(participantName)){
       return Alert.alert('Participant exists', `Participant already in the list.`)
-    }
+    }   
     setParticipants(prevState => [...prevState, participantName])
     setParticipantName('')
   }
 
   function handleParticipantRemove(name: string) {
+    
     Alert.alert('Remove participant', `Do you want to remove ${name}?`, [
       {
         text: 'No',
@@ -25,7 +26,7 @@ export function Home(){
       },
       {
         text: 'Yes',
-        onPress: () => Alert.alert(`Participant ${name} was removed.`) // removeParticipant(name)
+        onPress: () => setParticipants(prevState => prevState.filter(participant => participant !== name))
       }
     ])
   }
@@ -42,7 +43,7 @@ export function Home(){
       <View style={styles.form}>
         <TextInput 
           style={styles.input} 
-          placeholder='Testing'
+          placeholder='Name'
           placeholderTextColor={'#6b6b6b'}
           keyboardType='email-address'
           // onChangeText={(text) => setParticipantName(text)} // This is a explict form to send the text to the function
