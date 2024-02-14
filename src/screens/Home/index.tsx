@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { FlatList, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import { Button } from '../../components/Button'
 import { Participant } from '../../components/Participant'
@@ -5,13 +6,15 @@ import { styles } from './styles'
 
 export function Home(){
 
-  const participants = ['Thais', 'Lucas', 'Rafael', 'Thiago', 'Jonna', 'Lasrissa', 'Rafasela', 'Thiasgo', 'Jsonna', 'Ladrissa', 'Rafaerla'];
+  const [participants, setParticipants] = useState<string[]>([])
+  const [participantName, setParticipantName] = useState('')
 
-  function handleParticipantAdd(name: string){
-    if(participants.includes(name)){
+  function handleParticipantAdd(){
+    if(participants.includes(participantName)){
       return Alert.alert('Participant exists', `Participant already in the list.`)
     }
-    console.log('1 yes, yes..')
+    setParticipants(prevState => [...prevState, participantName])
+    setParticipantName('')
   }
 
   function handleParticipantRemove(name: string) {
@@ -42,9 +45,12 @@ export function Home(){
           placeholder='Testing'
           placeholderTextColor={'#6b6b6b'}
           keyboardType='email-address'
+          // onChangeText={(text) => setParticipantName(text)} // This is a explict form to send the text to the function
+          onChangeText={setParticipantName}
+          value={participantName}
         />
         <Button 
-          onPress={() => handleParticipantAdd('Thais')}
+          onPress={() => handleParticipantAdd()}
         />        
       </View>
 
